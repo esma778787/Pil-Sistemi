@@ -1,0 +1,14 @@
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
+
+# Google Sheets API'ye erişim
+scope = ["https://spreadsheets.google.com/feeds", 'https://www.googleapis.com/auth/drive']
+creds = ServiceAccountCredentials.from_json_keyfile_name('your-credentials.json', scope)
+client = gspread.authorize(creds)
+
+# Sheet'i aç
+sheet = client.open('Your Google Sheet').sheet1
+
+# Verileri al
+data = sheet.get_all_records()  # Tüm verileri al
+print(data)
